@@ -91,7 +91,8 @@ def main():
     st.plotly_chart(fig)
 
     #st.dataframe(df_tourakuritu_merged)
-    
+
+    #ヒストグラム
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
         fig.add_trace(go.Histogram(x=df_tourakuritu_merged.iloc[:,i+1],
@@ -111,7 +112,7 @@ def main():
     st.plotly_chart(fig)
         
     #correlation
-    fig_corr = px.imshow(df_tourakuritu_merged.corr(), text_auto=True, 
+    fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
                          zmin=-1,zmax=1,
                          color_continuous_scale=['blue','white','red'])
     fig_corr.update_layout(height=500,width=1000,
@@ -165,7 +166,7 @@ def main():
     
     #result
     fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
-    fig.update_layout(height=500,width=1500,
+    fig.update_layout(height=500,width=1000,
                       title='Result of MC : モンテカルロシミュレーション結果',
                       xaxis={'title': 'Variance of expected return : 期待収益率の分散'},
                       yaxis={'title': 'Expected return : 期待収益率'},
