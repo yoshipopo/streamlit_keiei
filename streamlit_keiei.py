@@ -42,8 +42,8 @@ def main():
   selected_company_list_hyouji_datenashi = selections
   
   #パラメータ設定
-  duration = st.slider('Years? : 株価取得期間は？(年)',1,10,2,)
-  N = st.slider('Trial times of MC? : モンテカルロ法回数は？',100,100000,10000,)
+  duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
+  N = st.slider('Trial times of MC? : モンテカルロ法回数は？',10000,50000,10000,)
   
   #ボタン部分
   if st.button("Submit and get csv"):
