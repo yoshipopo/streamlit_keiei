@@ -25,7 +25,7 @@ def main():
   #st.snow()
   
   #全銘柄リスト、xlsファイル読み込み
-  path = 'data_j.xls'
+  path = 'data_j_2023.6.xls'
   df_all_company_list = path_to_df_all_company_list(path)
   st.write('All stocks 全銘柄')
   st.dataframe(df_all_company_list)
