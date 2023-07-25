@@ -46,7 +46,7 @@ def main():
   #パラメータ設定
   duration_start = st.date_input("データ開始日", dt.date(2022, 4, 21))
   duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
-  #st.write('Your birthday is:', duration_end)
+  st.write('Your birthday is:', duration_end)
   
   #duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
 
