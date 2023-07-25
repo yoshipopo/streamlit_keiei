@@ -43,7 +43,7 @@ def main():
   selected_company_list_hyouji_datenashi = selections
   
   #パラメータ設定
-  duration_start = st.date_input("データ開始日", dt.date(2022, 4, 21))
+  duration_start = st.date_input("データ開始日", dt.date(2022, 4, 20))
   duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
   #st.write('データ収集一番最初の日', duration_start)
   
