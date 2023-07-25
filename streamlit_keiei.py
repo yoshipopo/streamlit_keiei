@@ -46,7 +46,7 @@ def main():
   #パラメータ設定
   duration_start = st.date_input("データ開始日", dt.date(2022, 4, 21))
   duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
-  st.write('Your birthday is:', duration_end)
+  #st.write('Your birthday is:', duration_end)
   
   duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
 
@@ -61,8 +61,8 @@ def main():
     st.write('崩壊してなければOK')
     
     st.header('課題1.2')
-    df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[0]
-    df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[1]
+    df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
+    df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
     
     st.write('temp')
     st.dataframe(df_tourakuritu_merged)
@@ -120,7 +120,7 @@ def main():
                                    #histnorm='probability',
                                    #hovertext='date{}'.df_tourakuritu_merged.iloc[:,i+1]
                                    ))
-        fig.update_layout(height=500,width=1000,
+        fig.update_layout(height=500,width=800,
                           title='Histogram of return per day : 日時収益率のヒストグラム',
                           xaxis={'title': '日時収益率'},
                           yaxis={'title': '度数'})
@@ -205,10 +205,10 @@ def selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_
     selected_company_list_hyouji = list(d)
     return df_meigarasenntaku_temp, selected_company_list, selected_company_list_hyouji
 
-def selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration):
+def selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end):
     #スタートの日付
-    end = dt.datetime.now()
-    start = end-dt.timedelta(days=duration*365)
+    end = duration_end #dt.datetime.now()
+    start = duration_start #end-dt.timedelta(days=duration*365)
     for i in range(len(selected_company_list)):
         code = selected_company_list[i]
 
