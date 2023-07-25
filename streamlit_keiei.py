@@ -70,7 +70,7 @@ def main():
       fig.add_trace(go.Scatter(x=a['Date'],y=a.iloc[:,i+1],name=selected_company_list_hyouji_datenashi[i]))
     fig.update_traces(hovertemplate='%{y}')
     fig.update_layout(hovermode='x')
-    fig.update_layout(height=500,width=1000,
+    fig.update_layout(height=500,width=800,
                       title='株価 : Stock Price',
                       xaxis={'title': 'Date'},
                       yaxis={'title': 'price/円'})                  
@@ -92,7 +92,7 @@ def main():
       fig.add_trace(go.Scatter(x = b['Date'],y = b.iloc[:,i+1],name = selected_company_list_hyouji_datenashi[i]))
     fig.update_traces(hovertemplate='%{y}')
     fig.update_layout(hovermode='x')
-    fig.update_layout(height=500,width=1000,
+    fig.update_layout(height=500,width=800,
                       title='株価 : Stock Price({}=100)'.format(standard_date.date()),
                       xaxis={'title': 'Date'},
                       yaxis={'title': 'price'})
@@ -125,7 +125,7 @@ def main():
     fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
                          zmin=-1,zmax=1,
                          color_continuous_scale=['blue','white','red'])
-    fig_corr.update_layout(height=500,width=1000,
+    fig_corr.update_layout(height=500,width=800,
                            title='Correlation of return per day : 日時収益率の相関係数'
                            )
     st.plotly_chart(fig_corr)
@@ -176,7 +176,7 @@ def main():
     
     #result
     fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
-    fig.update_layout(height=500,width=1000,
+    fig.update_layout(height=500,width=800,
                       title='Result of MC : モンテカルロシミュレーション結果',
                       xaxis={'title': 'Variance of expected return : 期待収益率の分散'},
                       yaxis={'title': 'Expected return : 期待収益率'},
