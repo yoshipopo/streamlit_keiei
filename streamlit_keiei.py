@@ -40,7 +40,7 @@ def main():
   st.dataframe(selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[0]).sort_values('コード')
   selected_company_list = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[1].sort_values('コード')
   selected_company_list_hyouji = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[2].sort_values('コード')
-  selected_company_list_hyouji_datenashi = selections.sort_values('コード')
+  selected_company_list_hyouji_datenashi = selections
   st.write('18:30', selected_company_list_hyouji)
   
   
