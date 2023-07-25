@@ -52,9 +52,8 @@ def main():
 
     st.header('課題1.1')
     st.write('まあ崩壊してなければOK')
-
     
-    st.header('課題1.2')
+    #st.header('課題1.2')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[1]
     
