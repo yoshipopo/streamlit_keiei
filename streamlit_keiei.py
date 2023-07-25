@@ -199,6 +199,7 @@ def main():
 
     temp=np.identity(n)
     x=np.append(x,temp, axis=0)
+    st.dataframe(x)
 
     squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
     df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
