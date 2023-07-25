@@ -213,7 +213,7 @@ def main():
     st.dataframe(df2)
     
     #df2['収益率'] = df2['収益率'].apply(lambda x: math.sqrt(x) )
-    df2['収益率'] = np.sqrt(df2['収益率'])
+    df2['収益率の分散'] = np.sqrt(df2['収益率の分散'])
     st.dataframe(df2)
     
     #result
