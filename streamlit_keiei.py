@@ -51,6 +51,8 @@ def main():
   if st.button("Submit and get csv"):
 
     st.header('課題1.1')
+    st.write('崩壊してなければOK')
+    
     st.header('課題1.2')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[1]
@@ -197,6 +199,7 @@ def selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_
     return df_meigarasenntaku_temp, selected_company_list, selected_company_list_hyouji
 
 def selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration):
+    #スタートの日付
     end = dt.datetime.now()
     start = end-dt.timedelta(days=duration*365)
     for i in range(len(selected_company_list)):
@@ -209,7 +212,10 @@ def selected_company_list_to_get_df(selected_company_list,selected_company_list_
         df_price = df_price.reset_index()
 
         df_tourakuritu = df['Close']
-        df_tourakuritu = df_tourakuritu.pct_change(-1)
+        #これは対数収益率ではない
+        #df_tourakuritu = df_tourakuritu.pct_change(-1)
+        #対数収益率
+        df_tourakuritu = np.log(df['Close']) - np.log(df['Close'].shift(-1))
         df_tourakuritu = df_tourakuritu.reset_index()
         df_tourakuritu = df_tourakuritu.dropna()
         df_tourakuritu = df_tourakuritu.reset_index(drop=True)
