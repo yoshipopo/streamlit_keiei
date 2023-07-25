@@ -125,7 +125,7 @@ def main():
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
 
-    #st.dataframe(df_tourakuritu_merged)
+    st.dataframe(df_tourakuritu_merged)
 
     #ヒストグラム
     fig = go.Figure()
