@@ -50,10 +50,18 @@ def main():
   #ボタン部分
   if st.button("Submit and get csv"):
 
-    st.header('1.課題1')
+    st.header('課題1.1')
+    sr.write('まあ崩壊してなければOK')
+
+    
+    st.header('課題1.2')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[1]
+    
+     st.write('temp')
+    st.dataframe(df_tourakuritu_merged)
 
+    
     st.write('株価データ : Stock price data')
     st.dataframe(df_price_merged)
     
