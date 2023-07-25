@@ -205,6 +205,7 @@ def main():
 
     df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
     df2.drop(columns='収益率の分散', inplace=True)
+    st.dataframe(df2)
 
     
     df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))
