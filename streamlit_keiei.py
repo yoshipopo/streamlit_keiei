@@ -58,7 +58,7 @@ def main():
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[1]
     
-     st.write('temp')
+    st.write('temp')
     st.dataframe(df_tourakuritu_merged)
 
     
