@@ -41,6 +41,8 @@ def main():
   selected_company_list = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[1]
   selected_company_list_hyouji = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[2]
   selected_company_list_hyouji_datenashi = selections
+  st.write('18:30', selected_company_list_hyouji)
+  
   
   #パラメータ設定
   duration_start = st.date_input("データ開始日", dt.date(2022, 4, 20))
@@ -67,7 +69,8 @@ def main():
     #st.dataframe(df_tourakuritu_merged)
 
     #################株価
-    #st.write('株価データ : Stock price data')
+    st.write('18:30',df_price_merged)
+    
     a=df_price_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
