@@ -215,40 +215,40 @@ def selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_
     selected_company_list_hyouji = list(d)
     return df_meigarasenntaku_temp, selected_company_list, selected_company_list_hyouji
 
-def selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_1,duration_2):
+def selected_company_list_to_get_df(selected_company_list_local,selected_company_list_hyouji_local,duration_1,duration_2):
     #スタートの日付
     end = duration_2 #dt.datetime.now()
     start = duration_1 #end-dt.timedelta(days=duration*365)
-    for i in range(len(selected_company_list)):
-        code = selected_company_list[i]
+    for i in range(len(selected_company_list_local)):
+        code = selected_company_list_local[i]
 
         stooq = StooqDailyReader(code, start=start, end=end)
-        df = stooq.read()  # pandas.core.frame.DataFrame
+        df_local = stooq.read()  # pandas.core.frame.DataFrame
 
-        df_price = df['Close']
-        df_price = df_price.reset_index()
+        df_price_local = df_local['Close']
+        df_price_local = df_price_local.reset_index()
 
-        df_tourakuritu = df['Close']
+        df_tourakuritu_local = df_local['Close']
         #これは対数収益率ではない,
-        #df_tourakuritu = df_tourakuritu.pct_change(-1)
+        #df_tourakuritu_local = df_tourakuritu_local.pct_change(-1)
         #対数収益率
-        df_tourakuritu = np.log(df['Close']) - np.log(df['Close'].shift(-1))
-        df_tourakuritu = df_tourakuritu.reset_index()
-        df_tourakuritu = df_tourakuritu.dropna()
-        df_tourakuritu = df_tourakuritu.reset_index(drop=True)
+        df_tourakuritu_local = np.log(df_local['Close']) - np.log(df_local['Close'].shift(-1))
+        df_tourakuritu_local = df_tourakuritu_local.reset_index()
+        df_tourakuritu_local = df_tourakuritu_local.dropna()
+        df_tourakuritu_local = df_tourakuritu_local.reset_index(drop=True)
 
         if i ==0:
-          df_price_merged = df_price
-          df_tourakuritu_merged = df_tourakuritu
+          df_price_merged_local = df_price_local
+          df_tourakuritu_merged_local = df_tourakuritu_local
         else:
-          df_price_merged=pd.merge(df_price_merged, df_price, on='Date')
-          df_tourakuritu_merged=pd.merge(df_tourakuritu_merged, df_tourakuritu, on='Date')
+          df_price_merged_local=pd.merge(df_price_merged_local, df_price_local, on='Date')
+          df_tourakuritu_merged_local=pd.merge(df_tourakuritu_merged_local, df_tourakuritu_local, on='Date')
           
-    df_price_merged = df_price_merged.set_axis(selected_company_list_hyouji, axis='columns')
-    df_tourakuritu_merged = df_tourakuritu_merged.set_axis(selected_company_list_hyouji, axis='columns')
-    df_price_merged['Date'] = df_price_merged['Date'].dt.round("D")
-    df_tourakuritu_merged['Date'] = df_tourakuritu_merged['Date'].dt.round("D")
-    return df_price_merged, df_tourakuritu_merged
+    df_price_merged_local = df_price_merged_local.set_axis(selected_company_list_hyouji_local, axis='columns')
+    df_tourakuritu_merged_local = df_tourakuritu_merged_local.set_axis(selected_company_list_hyouji_local, axis='columns')
+    df_price_merged_local['Date'] = df_price_merged_local['Date'].dt.round("D")
+    df_tourakuritu_merged_local['Date'] = df_tourakuritu_merged_local['Date'].dt.round("D")
+    return df_price_merged_local, df_tourakuritu_merged_local
   
   
 if __name__ == "__main__":
