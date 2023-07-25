@@ -158,8 +158,13 @@ def main():
                            title='Correlation of return per day : 日時収益率の相関係数'
                            )
     st.plotly_chart(fig_corr)
-    
-    
+    #################
+    st.header('課題1.4')
+    st.write('3銘柄と，PFのシャープレシオ')
+
+
+    ##################################
+    st.header('課題2')
     #MC------------------------------------------------------------------------------------
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
