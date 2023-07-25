@@ -57,7 +57,8 @@ def main():
     
     st.header('課題1.1')
     st.write('崩壊してなければOK')
-    
+
+    #################
     st.header('課題1.2')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
@@ -65,9 +66,7 @@ def main():
     #st.write('temp')
     #st.dataframe(df_tourakuritu_merged)
 
-    #st.write('株価データ : Stock price data')
-    #st.dataframe(df_price_merged)
-
+    #################株価
     #st.write('株価データ : Stock price data')
     a=df_price_merged
     fig = go.Figure()
@@ -116,13 +115,7 @@ def main():
                       yaxis={'title': 'price/円'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
-    standard_date_tentative  = (0,0)    
-    standard_date_tentative2 = len(df_price_merged) -1  -standard_date_tentative[0]
-    standard_date = df_price_merged.iat[standard_date_tentative2,0]
-    df_price_100 = df_price_merged
-    for i in range(len(selected_company_list_hyouji_datenashi)):
-      df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
-
+   
     
     st.dataframe(df_tourakuritu_merged)
 
