@@ -60,6 +60,7 @@ def main():
   #ボタン部分
   if st.button("Submit and get csv"):
     
+    #################
     st.header('課題1.1')
     st.write('崩壊してなければOK')
 
@@ -71,7 +72,7 @@ def main():
     #st.write('temp')
     #st.dataframe(df_tourakuritu_merged)
 
-    #################株価
+    ######株価
     st.write('18:30',df_price_merged)
     
     a=df_price_merged
@@ -118,14 +119,13 @@ def main():
     fig.update_traces(hovertemplate='%{y}')
     fig.update_layout(hovermode='x')
     fig.update_layout(height=500,width=800,
-                      title='対数収益率 : log-return',
+                      title='log-return : 対数収益率',
                       xaxis={'title': 'Date'},
                       yaxis={'title': 'log-return'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
 
-    
-    st.dataframe(df_tourakuritu_merged)
+    #st.dataframe(df_tourakuritu_merged)
 
     #ヒストグラム
     fig = go.Figure()
@@ -140,12 +140,16 @@ def main():
                                    ))
         fig.update_layout(height=500,width=800,
                           title='Histogram of return per day : 対数収益率のヒストグラム',
-                          xaxis={'title': '対数収益率'},
+                          xaxis={'title': 'log-return'},
                           yaxis={'title': '度数'})
 
     fig.update_layout(barmode='overlay')
     st.plotly_chart(fig)
-        
+
+    #################
+    st.header('課題1.3')
+    st.write('収益率の期待値,標準偏差,相関係数')
+    
     #correlation
     fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
                          zmin=-1,zmax=1,
