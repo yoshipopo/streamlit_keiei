@@ -21,10 +21,9 @@ st.set_page_config(layout="wide")
 def main():
   st.title('経営管理論　模範解答')
   st.write(sys.version)
-
-  st.header('0.銘柄選択')
   
-  #st.snow()
+  #################################################
+  st.header('0.銘柄選択')
   
   #全銘柄リスト、xlsファイル読み込み
   path = 'data_j_2023.6.xls'
@@ -46,15 +45,16 @@ def main():
   #パラメータ設定
   duration_start = st.date_input("データ開始日", dt.date(2022, 4, 21))
   duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
-  st.write('データ収集一番最初の日', duration_start)
+  #st.write('データ収集一番最初の日', duration_start)
   
   #duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
   
   N = st.slider('Trial times of MC? : モンテカルロ法回数は？',10000,50000,10000,)
-  
+
+  #################################################
   #ボタン部分
   if st.button("Submit and get csv"):
-
+    
     st.header('課題1.1')
     st.write('崩壊してなければOK')
     
@@ -62,13 +62,13 @@ def main():
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
     
-    st.write('temp')
-    st.dataframe(df_tourakuritu_merged)
+    #st.write('temp')
+    #st.dataframe(df_tourakuritu_merged)
 
-    
-    st.write('株価データ : Stock price data')
-    st.dataframe(df_price_merged)
-    
+    #st.write('株価データ : Stock price data')
+    #st.dataframe(df_price_merged)
+
+    #st.write('株価データ : Stock price data')
     a=df_price_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
@@ -81,8 +81,6 @@ def main():
                       yaxis={'title': 'price/円'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
-    
-    
     standard_date_tentative  = (0,0)    
     standard_date_tentative2 = len(df_price_merged) -1  -standard_date_tentative[0]
     standard_date = df_price_merged.iat[standard_date_tentative2,0]
@@ -105,7 +103,7 @@ def main():
     #fig.add_shape(type="line",x0=standard_date, y0=0, x1=standard_date, y1=100, line=dict(color="black",width=1))
     st.plotly_chart(fig)
 
-    #st.dataframe(df_tourakuritu_merged)
+    st.dataframe(df_tourakuritu_merged)
 
     #ヒストグラム
     fig = go.Figure()
