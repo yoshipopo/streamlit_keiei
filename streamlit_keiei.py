@@ -213,11 +213,12 @@ def main():
     st.dataframe(df2)
     
     #df2['収益率'] = df2['収益率'].apply(lambda x: math.sqrt(x) )
-    df2['収益率の分散'] = np.sqrt(df2['収益率の分散'])
+    df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
+    
     st.dataframe(df2)
     
     #result
-    fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
+    fig = px.scatter(df2, x='収益率の分散', y='収益率の標準偏差',hover_name='投資比率',color='分類')
     fig.update_layout(height=500,width=800,
                       title='Result of MC : モンテカルロシミュレーション結果',
                       xaxis={'title': 'Variance of expected return : 期待収益率の分散'},
