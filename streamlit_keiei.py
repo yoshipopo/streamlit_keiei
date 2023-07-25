@@ -102,17 +102,17 @@ def main():
     #fig.add_shape(type="line",x0=standard_date, y0=0, x1=standard_date, y1=100, line=dict(color="black",width=1))
     st.plotly_chart(fig)
 
-    st.write('騰落率')
-    c=df_price_merged
+    st.write('対数収益率a')
+    c=df_tourakuritu_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
       fig.add_trace(go.Scatter(x=c['Date'],y=c.iloc[:,i+1],name=selected_company_list_hyouji_datenashi[i]))
     fig.update_traces(hovertemplate='%{y}')
     fig.update_layout(hovermode='x')
     fig.update_layout(height=500,width=800,
-                      title='株価 : Stock Price',
+                      title='対数収益率 : log-return',
                       xaxis={'title': 'Date'},
-                      yaxis={'title': 'price/円'})                  
+                      yaxis={'title': 'log-return'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
    
@@ -131,8 +131,8 @@ def main():
                                    #hovertext='date{}'.df_tourakuritu_merged.iloc[:,i+1]
                                    ))
         fig.update_layout(height=500,width=800,
-                          title='Histogram of return per day : 日時収益率のヒストグラム',
-                          xaxis={'title': '日時収益率'},
+                          title='Histogram of return per day : 対数収益率のヒストグラム',
+                          xaxis={'title': '対数収益率'},
                           yaxis={'title': '度数'})
 
     fig.update_layout(barmode='overlay')
