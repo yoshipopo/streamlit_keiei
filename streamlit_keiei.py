@@ -34,9 +34,9 @@ def main():
   #銘柄選択
   st.write('Please select stocks : 銘柄を選択してください')
   selections = st.multiselect('',df_all_company_list['コード&銘柄名'],)
-  st.write('並べ替え前セレクション',selections)
+  st.write('並べ替え前selections:',selections)
   selections = sorted(selections)
-  st.write('並べ替えごセレクション',selections)
+  st.write('並べ替え後selections:',selections)
   st.write('Selected stocks : 選択した銘柄')
   
   #選択した銘柄表示
@@ -44,8 +44,8 @@ def main():
   selected_company_list = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[1]
   selected_company_list_hyouji = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[2]
   selected_company_list_hyouji_datenashi = selections
-  st.write('18:30', selected_company_list_hyouji)
-  st.write('18:31', selected_company_list_hyouji_datenashi)
+  st.write('selected_company_list_hyouji:', selected_company_list_hyouji)
+  st.write('selected_company_list_hyouji_datenashi:', selected_company_list_hyouji_datenashi)
   
   #パラメータ設定
   duration_start = st.date_input("データ開始日", dt.date(2022, 4, 20))
