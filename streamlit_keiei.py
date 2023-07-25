@@ -103,6 +103,27 @@ def main():
     #fig.add_shape(type="line",x0=standard_date, y0=0, x1=standard_date, y1=100, line=dict(color="black",width=1))
     st.plotly_chart(fig)
 
+    st.write('騰落率')
+    c=df_price_merged
+    fig = go.Figure()
+    for i in range(len(selected_company_list_hyouji_datenashi)):
+      fig.add_trace(go.Scatter(x=c['Date'],y=c.iloc[:,i+1],name=selected_company_list_hyouji_datenashi[i]))
+    fig.update_traces(hovertemplate='%{y}')
+    fig.update_layout(hovermode='x')
+    fig.update_layout(height=500,width=800,
+                      title='株価 : Stock Price',
+                      xaxis={'title': 'Date'},
+                      yaxis={'title': 'price/円'})                  
+    fig.update_layout(showlegend=True)
+    st.plotly_chart(fig)
+    standard_date_tentative  = (0,0)    
+    standard_date_tentative2 = len(df_price_merged) -1  -standard_date_tentative[0]
+    standard_date = df_price_merged.iat[standard_date_tentative2,0]
+    df_price_100 = df_price_merged
+    for i in range(len(selected_company_list_hyouji_datenashi)):
+      df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
+
+    
     st.dataframe(df_tourakuritu_merged)
 
     #ヒストグラム
