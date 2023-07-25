@@ -211,7 +211,7 @@ def main():
 
     st.dataframe(df2)
     
-    df2['収益率'] = df['収益率'].apply(lambda x: math.sqrt(x) )
+    df2['収益率'] = df2['収益率'].apply(lambda x: math.sqrt(x) )
     st.dataframe(df2)
     
     #result
