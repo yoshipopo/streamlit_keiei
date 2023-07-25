@@ -39,8 +39,8 @@ def main():
   
   #選択した銘柄表示
   st.dataframe(selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[0])
-  selected_company_list = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[1].sort_values('コード')
-  selected_company_list_hyouji = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[2].sort_values('コード')
+  selected_company_list = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[1]
+  selected_company_list_hyouji = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[2]
   selected_company_list_hyouji_datenashi = selections
   st.write('18:30', selected_company_list_hyouji)
   st.write('18:31', selected_company_list_hyouji_datenashi)
