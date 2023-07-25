@@ -149,6 +149,7 @@ def main():
     #################
     st.header('課題1.3')
     st.write('収益率の期待値,標準偏差,相関係数')
+    df_tourakuritu_merged.mean()
     
     #correlation
     fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
@@ -208,7 +209,10 @@ def main():
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
       #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
 
-    #st.dataframe(df2)
+    st.dataframe(df2)
+    
+    df2['収益率'] = df['収益率'].apply(lambda x: math.sqrt(x) )
+    st.dataframe(df2)
     
     #result
     fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
