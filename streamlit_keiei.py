@@ -208,7 +208,7 @@ def main():
     #df2.drop(columns='収益率の分散', inplace=True)
     #st.dataframe('h',df2)
 
-    
+    #x.shape[0]は，行列xの行数を返す．[1]は列数．
     df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))
     for i in range(x.shape[0]-n,x.shape[0]):
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
@@ -217,9 +217,9 @@ def main():
     
     st.dataframe(df2)
     
-    df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
-    df2.drop(columns='収益率の分散', inplace=True)
-    st.dataframe(df2)
+    #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
+    #df2.drop(columns='収益率の分散', inplace=True)
+    #st.dataframe(df2)
 
 
     
