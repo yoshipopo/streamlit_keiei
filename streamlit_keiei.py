@@ -44,7 +44,14 @@ def main():
   selected_company_list_hyouji_datenashi = selections
   
   #パラメータ設定
+  duration_start = st.date_input("データ開始日", datetime.date(2022, 4, 21))
+  duration_end = st.date_input("データ終了日", datetime.date(2023, 4, 21))
+  st.write('Your birthday is:', duration_end)
+  
   duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
+
+  
+  
   N = st.slider('Trial times of MC? : モンテカルロ法回数は？',10000,50000,10000,)
   
   #ボタン部分
