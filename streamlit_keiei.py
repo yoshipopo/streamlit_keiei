@@ -11,6 +11,7 @@ import sys
 from pandas_datareader.stooq import StooqDailyReader
 import pandas as pd
 import numpy as np
+import math
 from collections import deque
 import datetime as dt
 import plotly.graph_objects as go
