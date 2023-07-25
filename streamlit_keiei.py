@@ -51,7 +51,7 @@ def main():
   if st.button("Submit and get csv"):
 
     st.header('課題1.1')
-    sr.write('まあ崩壊してなければOK')
+    st.write('まあ崩壊してなければOK')
 
     
     st.header('課題1.2')
