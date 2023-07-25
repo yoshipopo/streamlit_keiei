@@ -93,6 +93,7 @@ def main():
     for i in range(len(selected_company_list_hyouji_datenashi)):
       df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
     
+    """
     #100に揃えた価格推移
     b=df_price_100
     fig = go.Figure()
@@ -107,8 +108,9 @@ def main():
     fig.update_layout(showlegend=True)
     #fig.add_shape(type="line",x0=standard_date, y0=0, x1=standard_date, y1=100, line=dict(color="black",width=1))
     st.plotly_chart(fig)
+    """
 
-    st.write('対数収益率a')
+    #対数収益率グラフ
     c=df_tourakuritu_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
@@ -121,7 +123,7 @@ def main():
                       yaxis={'title': 'log-return'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
-   
+
     
     st.dataframe(df_tourakuritu_merged)
 
