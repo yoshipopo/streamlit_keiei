@@ -19,7 +19,7 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 
 def main():
-  st.title('Monte Carlo simulation')
+  st.title('経営管理論　模範解答')
   st.write(sys.version)
   
   #st.snow()
