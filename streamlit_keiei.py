@@ -94,7 +94,7 @@ def main():
     for i in range(len(selected_company_list_hyouji_datenashi)):
       df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
     
-    """
+    _ = """
     #100に揃えた価格推移
     b=df_price_100
     fig = go.Figure()
