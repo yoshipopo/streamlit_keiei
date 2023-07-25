@@ -44,9 +44,9 @@ def main():
   selected_company_list_hyouji_datenashi = selections
   
   #パラメータ設定
-  #duration_start = st.date_input("データ開始日", dt.date(2022, 4, 21))
-  #duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
-  #st.write('Your birthday is:', duration_end)
+  duration_start = st.date_input("データ開始日", dt.date(2022, 4, 21))
+  duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
+  st.write('データ収集一番最初の日', duration_start)
   
   #duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
   
@@ -203,10 +203,10 @@ def selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_
     selected_company_list_hyouji = list(d)
     return df_meigarasenntaku_temp, selected_company_list, selected_company_list_hyouji
 
-def selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end):
+def selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_1,duration_2):
     #スタートの日付
-    end = duration_end #dt.datetime.now()
-    start = duration_start #end-dt.timedelta(days=duration*365)
+    end = duration_2 #dt.datetime.now()
+    start = duration_1 #end-dt.timedelta(days=duration*365)
     for i in range(len(selected_company_list)):
         code = selected_company_list[i]
 
