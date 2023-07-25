@@ -113,7 +113,7 @@ def main():
                                    #histnorm='probability',
                                    #hovertext='date{}'.df_tourakuritu_merged.iloc[:,i+1]
                                    ))
-        fig.update_layout(height=500,width=1500,
+        fig.update_layout(height=500,width=1000,
                           title='Histogram of return per day : 日時収益率のヒストグラム',
                           xaxis={'title': '日時収益率'},
                           yaxis={'title': '度数'})
@@ -212,7 +212,7 @@ def selected_company_list_to_get_df(selected_company_list,selected_company_list_
         df_price = df_price.reset_index()
 
         df_tourakuritu = df['Close']
-        #これは対数収益率ではない
+        #これは対数収益率ではない,
         #df_tourakuritu = df_tourakuritu.pct_change(-1)
         #対数収益率
         df_tourakuritu = np.log(df['Close']) - np.log(df['Close'].shift(-1))
