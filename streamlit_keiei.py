@@ -182,15 +182,15 @@ def main():
     df_vcm=df.cov()
 
     a=np.ones((n,n))
-    np.fill_diagonal(a,len(df))
+    np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
     np_vcm=df_vcm.values@a
 
     a=np.ones((n,n))
-    np.fill_diagonal(a,len(df))
+    np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
 
     df_mean=df.mean()
     np_mean=df_mean.values
-    np_mean=np_mean*len(df)
+    np_mean=np_mean*125 #np_mean=np_mean*len(df)
 
     x=np.random.uniform(size=(N,n))
     x/=np.sum(x, axis=1).reshape([N, 1])
