@@ -11,7 +11,7 @@ import sys
 from pandas_datareader.stooq import StooqDailyReader
 import pandas as pd
 import numpy as np
-import math
+import math 
 from collections import deque
 import datetime as dt
 import plotly.graph_objects as go
@@ -212,7 +212,8 @@ def main():
 
     st.dataframe(df2)
     
-    df2['収益率'] = df2['収益率'].apply(lambda x: math.sqrt(x) )
+    #df2['収益率'] = df2['収益率'].apply(lambda x: math.sqrt(x) )
+    df2['収益率'] = np.sqrt(df2['収益率'])
     st.dataframe(df2)
     
     #result
