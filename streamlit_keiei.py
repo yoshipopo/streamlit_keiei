@@ -21,8 +21,7 @@ st.set_page_config(layout="wide")
 def main():
   st.title('経営管理論　模範解答')
   st.write(sys.version)
-
-  st.header('ヘッダー')
+  st.header('0.銘柄選択')
   
   #st.snow()
   
@@ -49,7 +48,8 @@ def main():
   
   #ボタン部分
   if st.button("Submit and get csv"):
-    
+
+    st.header('1.課題1')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration)[1]
 
