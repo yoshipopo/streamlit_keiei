@@ -179,7 +179,9 @@ def main():
     st.dataframe(df_temp_corr)
 
     #あとポートフォリオ
-    st.write('ポートフォリオの投資比率が100%になっていることを確認しているか')
+    st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
+    st.number_input(label='{}',value=30).format(selections[0])
+    
 
 
     ##
@@ -274,7 +276,13 @@ def main():
     st.plotly_chart(fig)
 
     #################
-    st.subheader('課題2.2'
+    st.subheader('課題2.4')
+    st.write('まだ実装してない')
+
+
+    #################
+    st.subheader('課題2.5')
+    st.write('まだ実装してない')
 
 
 
