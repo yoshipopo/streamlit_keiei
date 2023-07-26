@@ -125,8 +125,9 @@ def main():
                       yaxis={'title': 'log-return'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
-
-    st.dataframe(df_tourakuritu_merged)
+    
+    with st.expander('元データ')
+      st.dataframe(df_tourakuritu_merged)
 
     #ヒストグラム
     fig = go.Figure()
@@ -152,10 +153,10 @@ def main():
     st.write('収益率の期待値,標準偏差,相関係数')
     #データ元は..1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算の計算．
 
-    #収益率期待値．
+    #期待収益率
     #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
-    df_temp_shuekiritu = df_tourakuritu_merged.drop(columns='Date').mean()*125
-    st.dataframe(df_temp_shuekiritu)
+    df_temp_expreturn = df_tourakuritu_merged.drop(columns='Date').mean()*125
+    st.dataframe(df_temp_expreturn)
 
     #標準偏差
     df_temp_stdev = df_tourakuritu_merged.drop(columns='Date').std()*math.sqrt(125)
@@ -176,7 +177,7 @@ def main():
     st.plotly_chart(fig_corr)
 
     
-    #pd.concat([df1, df2], axis=1)
+    pd.concat([df_temp_expreturn, df_temp_stdev, df_temp_corr], axis=1)
 
 
     
