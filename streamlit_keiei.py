@@ -65,7 +65,7 @@ def main():
     st.header('課題1.1')
     st.write('崩壊してなければOK')
 
-    #################
+    #################ここで株価取得．
     st.header('課題1.2')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
@@ -73,9 +73,7 @@ def main():
     #st.write('temp')
     #st.dataframe(df_tourakuritu_merged)
 
-    ######株価
-    st.write('18:30',df_price_merged)
-    
+    ######株価グラフ
     a=df_price_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
@@ -94,6 +92,9 @@ def main():
     df_price_100 = df_price_merged
     for i in range(len(selected_company_list_hyouji_datenashi)):
       df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
+
+    with st.expander('元データ(df_price_merged)'):
+      st.dataframe(df_price_merged)
     
     _ = """
     #100に揃えた価格推移
@@ -112,7 +113,7 @@ def main():
     st.plotly_chart(fig)
     """
 
-    #対数収益率グラフ
+    ######対数収益率グラフ
     c=df_tourakuritu_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
@@ -125,11 +126,8 @@ def main():
                       yaxis={'title': 'log-return'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
-    
-    with st.expander('元データ'):
-      st.dataframe(df_tourakuritu_merged)
 
-    #ヒストグラム
+    ######対数収益率ヒストグラム
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
         fig.add_trace(go.Histogram(x=df_tourakuritu_merged.iloc[:,i+1],
@@ -141,13 +139,16 @@ def main():
                                    #hovertext='date{}'.df_tourakuritu_merged.iloc[:,i+1]
                                    ))
         fig.update_layout(height=500,width=800,
-                          title='Histogram of return per day : 対数収益率のヒストグラム',
+                          title='Histogram of log-return : 対数収益率のヒストグラム',
                           xaxis={'title': 'log-return'},
                           yaxis={'title': '度数'})
-
     fig.update_layout(barmode='overlay')
     st.plotly_chart(fig)
 
+    with st.expander('元データ'):
+      st.dataframe(df_tourakuritu_merged)
+
+    
     #################
     st.header('課題1.3')
     st.write('収益率の期待値,標準偏差,相関係数')
