@@ -94,7 +94,7 @@ def main():
       df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
 
     with st.expander('元データ(df_price_merged)'):
-      st.dataframe(df_price_merged)
+      st.dataframe(a)
     
     _ = """
     #100に揃えた価格推移
