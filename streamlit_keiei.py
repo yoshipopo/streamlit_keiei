@@ -24,7 +24,7 @@ def main():
   st.write(sys.version)
   
   #################################################
-  st.header('0.銘柄選択')
+  st.header('銘柄選択')
   
   #全銘柄リスト、xlsファイル読み込み
   path = 'data_j_2023.6.xls'
@@ -62,11 +62,12 @@ def main():
   if st.button("Submit and get csv"):
     
     #################
-    st.header('課題1.1')
+    st.header('課題1')
+    st.subheader('課題1.1')
     st.write('崩壊してなければOK')
 
     #################ここで株価取得．
-    st.header('課題1.2')
+    st.subheader('課題1.2')
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
     
@@ -155,7 +156,7 @@ def main():
 
     
     #################
-    st.header('課題1.3')
+    st.subheader('課題1.3')
     #データ元は..1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算．
     st.write('半年（125日)に対応する期待収益率，標準偏差、相関係数')
 
@@ -177,6 +178,9 @@ def main():
     st.write('相関係数 : correlation')
     st.dataframe(df_temp_corr)
 
+    #あとポートフォリオ
+    st.write('ポートフォリオの投資比率が100%になっていることを確認しているか')
+
 
     ##
     with st.expander('メモ'):
@@ -192,13 +196,19 @@ def main():
 
     
     #################
-    st.header('課題1.4')
+    st.subheader('課題1.4')
     st.write('3銘柄と，PFのシャープレシオ')
 
 
     ##################################
     st.header('課題2')
-    #MC------------------------------------------------------------------------------------
+    
+    #################
+    st.subheader('課題2.1')
+    st.write('課題2.2と整合的であれば良い')
+    
+    #################
+    st.subheader('課題2.2')
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
@@ -262,6 +272,11 @@ def main():
                       yaxis={'title': 'Expected return : 期待収益率'},
                       )
     st.plotly_chart(fig)
+
+    #################
+    st.subheader('課題2.2'
+
+
 
         
 def path_to_df_all_company_list(path):
