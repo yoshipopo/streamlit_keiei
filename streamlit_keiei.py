@@ -150,11 +150,18 @@ def main():
     #################
     st.header('課題1.3')
     st.write('収益率の期待値,標準偏差,相関係数')
-    st.dataframe(df_tourakuritu_merged.mean())
+    #データ元は1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算の計算．
 
-    
-    
-    #correlation
+    #収益率期待値．
+    #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
+    df_temp_shuekiritu = df_tourakuritu_merged.drop(columns='Date').mean()*125
+    st.dataframe(df_temp_shuekiritu)
+
+    #標準偏差
+    df_temp_stdev = df_tourakuritu_merged.drop(columns='Date').std()*math.sqrt(125)
+    st.dataframe(df_temp_stdev)
+
+    #相関係数　correlation
     fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
                          zmin=-1,zmax=1,
                          color_continuous_scale=['blue','white','red'])
@@ -173,7 +180,7 @@ def main():
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
-    #st.write(company_list_hyouji_datenashi)
+    st.write(company_list_hyouji_datenashi)
 
     n=len(df.columns)
     #st.write(n)
@@ -181,11 +188,11 @@ def main():
     def get_portfolio(array1,array2,array3):
         rp = np.sum(array1*array2)
         sigmap = array1 @ array3 @ array1
-        return array1.tolist(), rp, sigmap
+        return array1.tolist(), rp, sigmap #tolistは，nparrayをlistに変換
 
     df_vcm=df.cov()
 
-    a=np.ones((n,n))
+    a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
     np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
     np_vcm=df_vcm.values@a
 
@@ -196,11 +203,10 @@ def main():
     np_mean=df_mean.values
     np_mean=np_mean*125 #np_mean=np_mean*len(df)
 
-    x=np.random.uniform(size=(N,n))
+    x=np.random.uniform(size=(N,n))   #Nは，モンテカルロ試行回数
     x/=np.sum(x, axis=1).reshape([N, 1])
-
     temp=np.identity(n)
-    x=np.append(x,temp, axis=0)
+    x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
     st.dataframe(x)
 
     squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
@@ -211,8 +217,8 @@ def main():
     #df2.drop(columns='収益率の分散', inplace=True)
     #st.dataframe('h',df2)
 
-    #x.shape[0]は，行列xの行数を返す．[1]は列数．
-    df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))
+   
+    df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))  #x.shape[0]は，行列xの行数を返す．[1]は列数．
     for i in range(x.shape[0]-n,x.shape[0]):
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
       #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
