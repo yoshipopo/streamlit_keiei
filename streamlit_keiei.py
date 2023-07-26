@@ -87,6 +87,7 @@ def main():
                       yaxis={'title': 'price/円'})                  
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
+    
     standard_date_tentative  = (0,0)    
     standard_date_tentative2 = len(df_price_merged) -1  -standard_date_tentative[0]
     standard_date = df_price_merged.iat[standard_date_tentative2,0]
@@ -161,19 +162,18 @@ def main():
     #期待収益率
     #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
     df_temp_expreturn = df_tourakuritu_merged.drop(columns='Date').mean()*125
+    df_temp_expreturn.rename(columns=[期待収益率], inplace=True)
     st.dataframe(df_temp_expreturn)
 
     #標準偏差
     df_temp_stdev = df_tourakuritu_merged.drop(columns='Date').std()*math.sqrt(125)
     st.dataframe(df_temp_stdev)
 
-
-
-    
-
     #相関係数　correlation
     df_temp_corr = df_tourakuritu_merged.drop(columns='Date').corr()
-    
+
+
+    ##
     fig_corr = px.imshow(df_temp_corr, text_auto=True, 
                          zmin=-1,zmax=1,
                          color_continuous_scale=['blue','white','red'])
