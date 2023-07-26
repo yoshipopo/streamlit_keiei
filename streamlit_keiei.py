@@ -33,12 +33,12 @@ def main():
   st.dataframe(df_all_company_list)
   
   #銘柄選択
-  st.write('Please select stocks : 銘柄を選択してください')
+  st.write('銘柄を選択してください : Please select stocks : ')
   selections = st.multiselect('',df_all_company_list['コード&銘柄名'],)
   st.write('並べ替え前selections:',selections)
   selections = sorted(selections)
   st.write('並べ替え後selections:',selections)
-  st.write('Selected stocks : 選択した銘柄')
+  st.write('選択した銘柄 : Selected stocks')
   
   #選択した銘柄表示
   st.dataframe(selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[0])
@@ -144,7 +144,7 @@ def main():
                                    #hovertext='date{}'.df_tourakuritu_merged.iloc[:,i+1]
                                    ))
         fig.update_layout(height=500,width=800,
-                          title='Histogram of log-return : 対数収益率のヒストグラム',
+                          title='対数収益率のヒストグラム : Histogram of log-return',
                           xaxis={'title': 'log-return'},
                           yaxis={'title': '度数'})
     fig.update_layout(barmode='overlay')
@@ -156,34 +156,38 @@ def main():
     
     #################
     st.header('課題1.3')
-    st.write('収益率の期待値,標準偏差,相関係数')
     #データ元は..1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算の計算．
+    st.write('半年を1期間.125日で計算')
 
     #期待収益率
     #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
     df_temp_expreturn = df_tourakuritu_merged.drop(columns='Date').mean()*125
     #df_temp_expreturn.rename(columns=['期待収益率'], inplace=True)
-    df_temp_expreturn.columns=['期待収益率'] #ここで列名設定している
+    #df_temp_expreturn.columns=['期待収益率'] #ここで列名設定している
+    st.write('期待収益率: expected log-return')
     st.dataframe(df_temp_expreturn)
 
     #標準偏差
     df_temp_stdev = df_tourakuritu_merged.drop(columns='Date').std()*math.sqrt(125)
+    st.write('標準偏差: standard deviation')
     st.dataframe(df_temp_stdev)
 
     #相関係数　correlation
     df_temp_corr = df_tourakuritu_merged.drop(columns='Date').corr()
+    st.write('相関係数　: correlation')
+    st.dataframe(df_temp_stdev)
 
 
     ##
-    fig_corr = px.imshow(df_temp_corr, text_auto=True, 
-                         zmin=-1,zmax=1,
-                         color_continuous_scale=['blue','white','red'])
-    fig_corr.update_layout(height=500,width=800,
-                           title='Correlation of log-return: 対数収益率の相関係数')
-    st.plotly_chart(fig_corr)
-
-    
-    st.dataframe(pd.concat([df_temp_expreturn, df_temp_stdev, df_temp_corr.T], axis=1))
+    with st.expander('メモ'):
+      fig_corr = px.imshow(df_temp_corr, text_auto=True, 
+                           zmin=-1,zmax=1,
+                           color_continuous_scale=['blue','white','red'])
+      fig_corr.update_layout(height=500,width=800,
+                             title='Correlation of log-return: 対数収益率の相関係数')
+      st.plotly_chart(fig_corr)
+      
+      st.dataframe(pd.concat([df_temp_expreturn, df_temp_stdev, df_temp_corr], axis=1))
 
 
     
