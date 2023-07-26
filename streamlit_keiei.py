@@ -150,7 +150,9 @@ def main():
     #################
     st.header('課題1.3')
     st.write('収益率の期待値,標準偏差,相関係数')
-    df_tourakuritu_merged.mean()
+    st.dataframe(df_tourakuritu_merged.mean())
+
+    
     
     #correlation
     fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
