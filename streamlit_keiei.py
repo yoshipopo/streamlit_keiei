@@ -75,6 +75,7 @@ def main():
 
     ######株価グラフ
     a=df_price_merged
+    temp_forshow=df_price_merged
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
       fig.add_trace(go.Scatter(x=a['Date'],y=a.iloc[:,i+1],name=selected_company_list_hyouji_datenashi[i]))
@@ -94,7 +95,7 @@ def main():
       df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
 
     with st.expander('元データ(df_price_merged)'):
-      st.dataframe(a)
+      st.dataframe(temp_forshow)
     
     _ = """
     #100に揃えた価格推移
