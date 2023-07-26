@@ -71,7 +71,7 @@ def main():
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
     
     #st.write('temp')
-    #st.dataframe(df_tourakuritu_merged)
+    st.dataframe(df_price_merged)
 
     ######株価グラフ
     a=df_price_merged
