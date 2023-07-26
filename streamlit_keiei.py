@@ -191,7 +191,7 @@ def main():
     
     #あとポートフォリオ
     st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
-    st.write('selections[0]')
+    st.write(selections[0])
     st.number_input('q6s1017136',value=30)
     
 
