@@ -183,7 +183,7 @@ def main():
     st.plotly_chart(fig_corr)
 
     
-    st.dataframe(pd.concat([df_temp_expreturn, df_temp_stdev, df_temp_corr], axis=1))
+    st.dataframe(pd.concat([df_temp_expreturn, df_temp_stdev, df_temp_corr.T], axis=1))
 
 
     
