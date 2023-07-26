@@ -150,7 +150,7 @@ def main():
     #################
     st.header('課題1.3')
     st.write('収益率の期待値,標準偏差,相関係数')
-    #データ元は1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算の計算．
+    #データ元は..1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算の計算．
 
     #収益率期待値．
     #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
@@ -161,14 +161,25 @@ def main():
     df_temp_stdev = df_tourakuritu_merged.drop(columns='Date').std()*math.sqrt(125)
     st.dataframe(df_temp_stdev)
 
+
+
+    
+
     #相関係数　correlation
-    fig_corr = px.imshow(df_tourakuritu_merged.drop('Date', axis=1).corr(), text_auto=True, 
+    df_temp_corr = df_tourakuritu_merged.drop(columns='Date').corr()
+    
+    fig_corr = px.imshow(df_temp_corr, text_auto=True, 
                          zmin=-1,zmax=1,
                          color_continuous_scale=['blue','white','red'])
     fig_corr.update_layout(height=500,width=800,
-                           title='Correlation of return per day : 日時収益率の相関係数'
-                           )
+                           title='Correlation of log-return: 対数収益率の相関係数')
     st.plotly_chart(fig_corr)
+
+    
+    #pd.concat([df1, df2], axis=1)
+
+
+    
     #################
     st.header('課題1.4')
     st.write('3銘柄と，PFのシャープレシオ')
