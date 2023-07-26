@@ -127,6 +127,9 @@ def main():
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
 
+    with st.expander('元データ(df_tourakuritu_merged)'):
+      st.dataframe(df_tourakuritu_merged)
+
     ######対数収益率ヒストグラム
     fig = go.Figure()
     for i in range(len(selected_company_list_hyouji_datenashi)):
@@ -145,7 +148,7 @@ def main():
     fig.update_layout(barmode='overlay')
     st.plotly_chart(fig)
 
-    with st.expander('元データ'):
+    with st.expander('元データ(df_tourakuritu_merged)'):
       st.dataframe(df_tourakuritu_merged)
 
     
