@@ -33,8 +33,8 @@ def main():
   st.dataframe(df_all_company_list)
   
   #銘柄選択
-  st.write('銘柄を選択してください : Please select stocks : ')
-  selections = st.multiselect('',df_all_company_list['コード&銘柄名'],)
+  st.write('銘柄を選択してください : Please select stocks')
+  selections = st.multiselect(''銘柄を選択してください : Please select stocks'',df_all_company_list['コード&銘柄名'],)
   st.write('並べ替え前selections:',selections)
   selections = sorted(selections)
   st.write('並べ替え後selections:',selections)
@@ -177,15 +177,8 @@ def main():
     df_temp_corr = df_tourakuritu_merged.drop(columns='Date').corr()
     st.write('相関係数 : correlation')
     st.dataframe(df_temp_corr)
-
-    #あとポートフォリオ
-    st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
-    st.write('selections[0]')
-    st.number_input('q6s1017136',value=30)
     
-
-
-    ##
+    _ = """　色付きで，綺麗に相関係数描画
     with st.expander('メモ'):
       fig_corr = px.imshow(df_temp_corr, text_auto=True, 
                            zmin=-1,zmax=1,
@@ -195,6 +188,16 @@ def main():
       st.plotly_chart(fig_corr)
       
       st.dataframe(pd.concat([df_temp_expreturn, df_temp_stdev, df_temp_corr], axis=1))
+    """
+    
+    #あとポートフォリオ
+    st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
+    st.write('selections[0]')
+    st.number_input('q6s1017136',value=30)
+    
+
+
+
 
 
     
