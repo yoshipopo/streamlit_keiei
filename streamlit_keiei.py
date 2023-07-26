@@ -33,7 +33,6 @@ def main():
   st.dataframe(df_all_company_list)
   
   #銘柄選択
-  st.write('銘柄を選択してください : Please select stocks')
   selections = st.multiselect('銘柄を選択してください : Please select stocks',df_all_company_list['コード&銘柄名'])
   st.write('並べ替え前selections:',selections)
   selections = sorted(selections)
