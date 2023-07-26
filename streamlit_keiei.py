@@ -192,7 +192,8 @@ def main():
     #あとポートフォリオ
     st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
     st.write(selections[0])
-    st.number_input('q6s1017136',value=30)
+    st.number_input(selections[0],value=30)
+    #st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
     
 
 
