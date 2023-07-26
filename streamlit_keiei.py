@@ -126,7 +126,7 @@ def main():
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
     
-    with st.expander('元データ')
+    with st.expander('元データ'):
       st.dataframe(df_tourakuritu_merged)
 
     #ヒストグラム
