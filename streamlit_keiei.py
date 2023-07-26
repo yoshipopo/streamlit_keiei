@@ -191,102 +191,100 @@ def main():
     
     #あとポートフォリオ
     st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
-    st.write(selections[0])
-    st.number_input(selections[0],value=30)
+    #st.number_input(selections[0],value=30)
     st.slider(selections[0],0,100,1,)
+
+
+
+
+    if st.button("Submit"):
     
-
-
-
-
-
-    
-    #################
-    st.subheader('課題1.4')
-    st.write('3銘柄と，PFのシャープレシオ')
-
-
-    ##################################
-    st.header('課題2')
-    
-    #################
-    st.subheader('課題2.1')
-    st.write('課題2.2と整合的であれば良い')
-    
-    #################
-    st.subheader('課題2.2')
-    df=df_tourakuritu_merged
-    df=df.drop('Date', axis=1)
-    company_list_hyouji_datenashi=df.columns.values
-    st.write(company_list_hyouji_datenashi)
-
-    n=len(df.columns)
-    #st.write(n)
-
-    def get_portfolio(array1,array2,array3):
-        rp = np.sum(array1*array2)
-        sigmap = array1 @ array3 @ array1
-        return array1.tolist(), rp, sigmap #tolistは，nparrayをlistに変換
-
-    df_vcm=df.cov()
-
-    a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
-    np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
-    np_vcm=df_vcm.values@a
-
-    a=np.ones((n,n))
-    np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
-
-    df_mean=df.mean()
-    np_mean=df_mean.values
-    np_mean=np_mean*125 #np_mean=np_mean*len(df)
-
-    x=np.random.uniform(size=(N,n))   #Nは，モンテカルロ試行回数
-    x/=np.sum(x, axis=1).reshape([N, 1])
-    temp=np.identity(n)
-    x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
-    st.dataframe(x)
-
-    squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
-    df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
-    #st.dataframe('g',df2)
-    
-    #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
-    #df2.drop(columns='収益率の分散', inplace=True)
-    #st.dataframe('h',df2)
-
+      #################
+      st.subheader('課題1.4')
+      st.write('3銘柄と，PFのシャープレシオ')
+  
+  
+      ##################################
+      st.header('課題2')
+      
+      #################
+      st.subheader('課題2.1')
+      st.write('課題2.2と整合的であれば良い')
+      
+      #################
+      st.subheader('課題2.2')
+      df=df_tourakuritu_merged
+      df=df.drop('Date', axis=1)
+      company_list_hyouji_datenashi=df.columns.values
+      st.write(company_list_hyouji_datenashi)
+  
+      n=len(df.columns)
+      #st.write(n)
+  
+      def get_portfolio(array1,array2,array3):
+          rp = np.sum(array1*array2)
+          sigmap = array1 @ array3 @ array1
+          return array1.tolist(), rp, sigmap #tolistは，nparrayをlistに変換
+  
+      df_vcm=df.cov()
+  
+      a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
+      np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
+      np_vcm=df_vcm.values@a
+  
+      a=np.ones((n,n))
+      np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
+  
+      df_mean=df.mean()
+      np_mean=df_mean.values
+      np_mean=np_mean*125 #np_mean=np_mean*len(df)
+  
+      x=np.random.uniform(size=(N,n))   #Nは，モンテカルロ試行回数
+      x/=np.sum(x, axis=1).reshape([N, 1])
+      temp=np.identity(n)
+      x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
+      st.dataframe(x)
+  
+      squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
+      df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
+      #st.dataframe('g',df2)
+      
+      #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
+      #df2.drop(columns='収益率の分散', inplace=True)
+      #st.dataframe('h',df2)
+  
+     
+      df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))  #x.shape[0]は，行列xの行数を返す．[1]は列数．
+      for i in range(x.shape[0]-n,x.shape[0]):
+        df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
+        #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
    
-    df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))  #x.shape[0]は，行列xの行数を返す．[1]は列数．
-    for i in range(x.shape[0]-n,x.shape[0]):
-      df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
-      #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
- 
-    
-    st.dataframe(df2)
-    
-    #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
-    #df2.drop(columns='収益率の分散', inplace=True)
-    #st.dataframe(df2)
-
-
-    
-    #result
-    fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
-    fig.update_layout(height=500,width=800,
-                      title='Result of MC : モンテカルロシミュレーション結果',
-                      xaxis={'title': 'Variance of expected return : 期待収益率の分散'},
-                      yaxis={'title': 'Expected return : 期待収益率'},
-                      )
-    st.plotly_chart(fig)
-
-    #################
-    st.subheader('課題2.4')
-    st.write('まだ実装してない')
-
-
-    #################
-    st.subheader('課題2.5')
-    st.write('まだ実装してない')
+      
+      st.dataframe(df2)
+      
+      #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
+      #df2.drop(columns='収益率の分散', inplace=True)
+      #st.dataframe(df2)
+  
+  
+      
+      #result
+      fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
+      fig.update_layout(height=500,width=800,
+                        title='Result of MC : モンテカルロシミュレーション結果',
+                        xaxis={'title': 'Variance of expected return : 期待収益率の分散'},
+                        yaxis={'title': 'Expected return : 期待収益率'},
+                        )
+      st.plotly_chart(fig)
+  
+      #################
+      st.subheader('課題2.4')
+      st.write('まだ実装してない')
+  
+  
+      #################
+      st.subheader('課題2.5')
+      st.write('まだ実装してない')
 
 
 
