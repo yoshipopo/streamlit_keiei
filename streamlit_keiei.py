@@ -162,7 +162,8 @@ def main():
     #期待収益率
     #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
     df_temp_expreturn = df_tourakuritu_merged.drop(columns='Date').mean()*125
-    df_temp_expreturn.rename(columns=[期待収益率], inplace=True)
+    #df_temp_expreturn.rename(columns=['期待収益率'], inplace=True)
+    df_temp_expreturn.columns=['期待収益率'] #ここで列名設定している
     st.dataframe(df_temp_expreturn)
 
     #標準偏差
