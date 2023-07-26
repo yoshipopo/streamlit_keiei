@@ -156,26 +156,26 @@ def main():
     
     #################
     st.header('課題1.3')
-    #データ元は..1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算の計算．
-    st.write('半年を1期間.125日で計算')
+    #データ元は..1年使うということで,半年を1期間とする期待収益率，標準偏差、相関係数の計算．
+    st.write('半年（125日)に対応する期待収益率，標準偏差、相関係数')
 
     #期待収益率
     #st.dataframe(df_tourakuritu_merged.drop(columns='Date')) #Date落とす.
     df_temp_expreturn = df_tourakuritu_merged.drop(columns='Date').mean()*125
     #df_temp_expreturn.rename(columns=['期待収益率'], inplace=True)
     #df_temp_expreturn.columns=['期待収益率'] #ここで列名設定している
-    st.write('期待収益率: expected log-return')
+    st.write('期待収益率 : expected log-return')
     st.dataframe(df_temp_expreturn)
 
     #標準偏差
     df_temp_stdev = df_tourakuritu_merged.drop(columns='Date').std()*math.sqrt(125)
-    st.write('標準偏差: standard deviation')
+    st.write('標準偏差 : standard deviation')
     st.dataframe(df_temp_stdev)
 
     #相関係数　correlation
     df_temp_corr = df_tourakuritu_merged.drop(columns='Date').corr()
-    st.write('相関係数　: correlation')
-    st.dataframe(df_temp_stdev)
+    st.write('相関係数 : correlation')
+    st.dataframe(df_temp_corr)
 
 
     ##
