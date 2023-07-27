@@ -306,19 +306,20 @@ def main():
 
     
     df_temp25=df.cov()
-    with st.expander('for developer(df_temp25)'):
-      st.write('df_temp25',df_temp25) 
+    with st.expander('for developer(df_temp25,課題2.2のdf_vcmと同じ)'):
+      st.write('df_temp25',df_temp25)
 
     #相関係数が0ということは，共分散が0ということ．分散共分散行列(df_vcmの，対角成分以外を0にすればよい)
     diagonal_df_temp25 = np.diag(df_temp25) #df_temp25の対角成分取得
-    st.write('diagonal_df_temp25',diagonal_df_temp25) 
+    with st.expander('for developer(diagonal_df_temp25,df_vcmの対角成分)'):
+      st.write('diagonal_df_temp25',diagonal_df_temp25) 
     
     df_vcm = np.zeros((n, n)) #全部0のn*n（銘柄数*銘柄数）の行列作成
     np.fill_diagonal(df_vcm, diagonal_df_temp25) #ここで上書き
     df_vcm = pd.DataFrame(df_vcm)
     
     with st.expander('for developer(df_vcm,相関係数=0 version)'):
-      st.write('df_vcm',df_vcm) 
+      st.write('df_vcm',df_vcm)
     
     
 
