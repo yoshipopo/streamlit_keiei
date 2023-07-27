@@ -267,11 +267,6 @@ def main():
     df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
     #st.dataframe('g',df2)
     
-    #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
-    #df2.drop(columns='収益率の分散', inplace=True)
-    #st.dataframe('h',df2)
-
-   
     df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))  #x.shape[0]は，行列xの行数を返す．[1]は列数．
     for i in range(x.shape[0]-n,x.shape[0]):
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
@@ -349,24 +344,22 @@ def main():
     for i in range(x.shape[0]-n,x.shape[0]):
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
       #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
- 
+    
+    df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
+    #df2.drop(columns='収益率の分散', inplace=True)
+
     with st.expander('for developer(df2)'):
       st.write('df2',df2)
     
-    #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
-    #df2.drop(columns='収益率の分散', inplace=True)
-    #st.dataframe(df2)
-
-
-    
     #result
-    fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
+    fig = px.scatter(df2, x='収益率の標準偏差', y='収益率',hover_name='投資比率',color='分類')
     fig.update_layout(height=500,width=800,
                       title='Result of MC : モンテカルロシミュレーション結果',
-                      xaxis={'title': 'Standard deviation of expected return : 期待収益率の'},
+                      xaxis={'title': 'Standard deviation of expected return : 収益率の標準偏差'},
                       yaxis={'title': 'Expected return : 期待収益率'},
                       )
     st.plotly_chart(fig)
+
 
   
 
