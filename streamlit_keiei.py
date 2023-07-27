@@ -313,7 +313,7 @@ def main():
     diagonal_df_temp25 = np.diag(df_temp25) #df_temp25の対角成分取得
     st.write('diagonal_df_temp25',diagonal_df_temp25) 
     
-    df_vcm = np.zeros((n, n),int) #全部0のn*n（銘柄数*銘柄数）の行列作成
+    df_vcm = np.zeros((n, n)) #全部0のn*n（銘柄数*銘柄数）の行列作成
     np.fill_diagonal(df_vcm, diagonal_df_temp25) #ここで上書き
     #st.write('df_zero',df_zero)
     #df_vcm = df_zero
