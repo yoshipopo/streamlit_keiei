@@ -278,7 +278,7 @@ def main():
     #df2.drop(columns='収益率の分散', inplace=True)
     #st.dataframe(df2)
 
-     with st.expander('for developer(df2)'):
+    with st.expander('for developer(df2)'):
       st.write('df2',df2)
     
     #result
