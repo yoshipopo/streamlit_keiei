@@ -227,6 +227,7 @@ def main():
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
+    
     with st.expander('for developer'):
       st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
 
