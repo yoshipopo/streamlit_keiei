@@ -273,6 +273,67 @@ def main():
     for i in range(x.shape[0]-n,x.shape[0]):
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
       #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
+    
+    df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
+    #df2.drop(columns='収益率の分散', inplace=True)
+    #st.dataframe(df2)
+
+     with st.expander('for developer(df2)'):
+      st.write('df2',df2)
+    
+    #result
+    fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
+    fig.update_layout(height=500,width=800,
+                      title='Result of MC : モンテカルロシミュレーション結果',
+                      xaxis={'title': 'Standard deviation of expected return : 収益率の標準偏差'},
+                      yaxis={'title': 'Expected return : 期待収益率'},
+                      )
+    st.plotly_chart(fig)
+
+    st.write('上図に，自己のポートフォリオの点が"正しい計算の上で"描画されていれば良い．')
+
+    #################
+    st.subheader('課題2.3')
+    st.write('課題2.2と整合的であれば良い．')
+
+    #################
+    st.subheader('課題2.4')
+    st.write('自己のポートフォリオがポートフォリオ理論の観点から好ましいものであったか，議論ができていれば良い．')
+
+
+    #################
+    st.subheader('課題2.5')
+    st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
+
+    df_vcm = np.fill_diagonal(np.zeros((3, 3)), 1) 　#df.cov()
+
+    a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
+    np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
+    np_vcm=df_vcm.values@a
+
+    a=np.ones((n,n))
+    np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
+
+    df_mean=df.mean()
+    np_mean=df_mean.values
+    np_mean=np_mean*125 #np_mean=np_mean*len(df)
+
+    x=np.random.uniform(size=(N,n))   #Nは，モンテカルロ試行回数
+    x/=np.sum(x, axis=1).reshape([N, 1])
+    temp=np.identity(n)
+    x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
+    with st.expander('for developer(x)'):
+      st.write('x',x)
+
+    squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
+    df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
+    #st.dataframe('g',df2)
+
+  
+    df2['分類']='PF{}資産で構成'.format(len(company_list_hyouji_datenashi))  #x.shape[0]は，行列xの行数を返す．[1]は列数．
+    for i in range(x.shape[0]-n,x.shape[0]):
+      df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
+      #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
  
     with st.expander('for developer(df2)'):
       st.write('df2',df2)
@@ -293,19 +354,7 @@ def main():
     st.plotly_chart(fig)
 
     st.write('上図に，自己のポートフォリオの点が"正しい計算の上で"描画されていれば良い．')
-
-    #################
-    st.subheader('課題2.3')
-    st.write('課題2.2と整合的であれば良い．')
-
-    #################
-    st.subheader('課題2.4')
-    st.write('自己のポートフォリオがポートフォリオ理論の観点から好ましいものであったか，議論ができていれば良い．')
-
-
-    #################
-    st.subheader('課題2.5')
-    st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
+    
 
 
 
