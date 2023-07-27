@@ -29,23 +29,26 @@ def main():
   #全銘柄リスト、xlsファイル読み込み
   path = 'data_j_2023.6.xls'
   df_all_company_list = path_to_df_all_company_list(path)
-  st.write('All stocks 全銘柄')
+  st.write('全銘柄 : All stocks')
   st.dataframe(df_all_company_list)
   
   #銘柄選択
-  selections = st.multiselect('銘柄を選択してください : Please select stocks',df_all_company_list['コード&銘柄名'])
-  st.write('並べ替え前selections:',selections)
-  selections = sorted(selections)
-  st.write('並べ替え後selections:',selections)
+  selections_temp = st.multiselect('銘柄を選択してください : Please select stocks',df_all_company_list['コード&銘柄名'])
+  selections = sorted(selections_temp)
+  with st.expander('動作確認'):
+      st.write('並べ替え前(selections_temp):',selections_temp)
+      st.write('並べ替え後(selections):',selections)
+  
   st.write('選択した銘柄 : Selected stocks')
   
-  #選択した銘柄表示
+  #選択した銘柄.表示用に整理
   st.dataframe(selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[0])
   selected_company_list = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[1]
   selected_company_list_hyouji = selections_to_selected_company_list_and_selected_company_list_hyouji(df_all_company_list,selections)[2]
   selected_company_list_hyouji_datenashi = selections
-  st.write('selected_company_list_hyouji:', selected_company_list_hyouji)
-  st.write('selected_company_list_hyouji_datenashi:', selected_company_list_hyouji_datenashi)
+  with st.expander('動作確認'):
+      st.write('selected_company_list_hyouji:', selected_company_list_hyouji)
+      st.write('selected_company_list_hyouji_datenashi:', selected_company_list_hyouji_datenashi)
   
   #パラメータ設定
   duration_start = st.date_input("データ開始日", dt.date(2022, 4, 20))
