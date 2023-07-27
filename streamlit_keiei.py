@@ -277,13 +277,13 @@ def main():
 
     with st.expander('for developer(df2)'):
       st.write('df2',df2)
-    
+
     #result
     fig = px.scatter(df2, x='収益率の標準偏差', y='収益率',hover_name='投資比率',color='分類')
     fig.update_layout(height=500,width=800,
-                      title='Result of MC : モンテカルロシミュレーション結果',
-                      xaxis={'title': 'Standard deviation of expected return : 収益率の標準偏差'},
-                      yaxis={'title': 'Expected return : 期待収益率'},
+                      title='モンテカルロシミュレーション結果（相関係数0） : Result of MC',
+                      xaxis={'title': '収益率の標準偏差 : Standard deviation of expected return'},
+                      yaxis={'title': '期待収益率 : Expected return'},
                       )
     st.plotly_chart(fig)
 
@@ -361,9 +361,9 @@ def main():
     #result
     fig = px.scatter(df2, x='収益率の標準偏差', y='収益率',hover_name='投資比率',color='分類')
     fig.update_layout(height=500,width=800,
-                      title='Result of MC : モンテカルロシミュレーション結果',
-                      xaxis={'title': 'Standard deviation of expected return : 収益率の標準偏差'},
-                      yaxis={'title': 'Expected return : 期待収益率'},
+                      title='モンテカルロシミュレーション結果（相関係数0） : Result of MC',
+                      xaxis={'title': '収益率の標準偏差 : Standard deviation of expected return'},
+                      yaxis={'title': '期待収益率 : Expected return'},
                       )
     st.plotly_chart(fig)
 
