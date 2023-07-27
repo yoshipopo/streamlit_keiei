@@ -73,7 +73,7 @@ def main():
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
     
-    #st.write('temp')
+    st.write('取得した株価データ　： Stock Price data')
     st.dataframe(df_price_merged)
 
     ######株価グラフ
@@ -98,8 +98,8 @@ def main():
     for i in range(len(selected_company_list_hyouji_datenashi)):
       df_price_100[selected_company_list_hyouji_datenashi[i]]=100*df_price_100[selected_company_list_hyouji_datenashi[i]]/df_price_100.at[df_price_100.index[standard_date_tentative2], selected_company_list_hyouji_datenashi[i]]
 
-    with st.expander('元データ(df_price_merged)'):
-      st.dataframe(temp_forshow)
+    #with st.expander('元データ(df_price_merged)'):
+      #st.dataframe(temp_forshow)
     
     _ = """
     #100に揃えた価格推移
@@ -202,8 +202,8 @@ def main():
     
     #################
     st.subheader('課題1.4')
-    st.write('3銘柄のシャープレシオ')
-    st.write('とりあえず安全利子率を0で計算．Excxel　で，この値に近い計算を行なっていればOK')
+    st.write('3銘柄のシャープレシオ :')
+    st.write('とりあえず安全利子率を0で計算.Excxel　で，この値に近い計算を行なっていればOK')
     st.dataframe(df_temp_expreturn/df_temp_stdev)
 
 
@@ -227,7 +227,8 @@ def main():
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
-    st.write(company_list_hyouji_datenashi)
+    with st.expander('for developer'):
+      st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
 
     n=len(df.columns)
     #st.write(n)
@@ -254,7 +255,8 @@ def main():
     x/=np.sum(x, axis=1).reshape([N, 1])
     temp=np.identity(n)
     x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
-    st.dataframe(x)
+    with st.expander('for developer'):
+      st.dataframe('x',x)
 
     squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
     df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
@@ -270,8 +272,8 @@ def main():
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
       #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
  
-    
-    st.dataframe(df2)
+    with st.expander('for developer'):
+      st.dataframe('df2',df2)
     
     #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
     #df2.drop(columns='収益率の分散', inplace=True)
@@ -283,20 +285,20 @@ def main():
     fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
     fig.update_layout(height=500,width=800,
                       title='Result of MC : モンテカルロシミュレーション結果',
-                      xaxis={'title': 'Variance of expected return : 期待収益率の分散'},
+                      xaxis={'title': 'Standard deviation of expected return : 期待収益率の標準偏差'},
                       yaxis={'title': 'Expected return : 期待収益率'},
                       )
     st.plotly_chart(fig)
 
-    
+    st.write('上図に，自己のポートフォリオの点が"正しい計算の上で"描画されていれば良い．')
 
     #################
     st.subheader('課題2.3')
-    st.write('このグラフに比べ，')
+    st.write('課題2.2と整合的であれば良い．')
 
     #################
     st.subheader('課題2.4')
-    st.write('自己のポートフォリオがポートフォリオ理論の観点から好ましいものであったか，議論ができていれば良い')
+    st.write('自己のポートフォリオがポートフォリオ理論の観点から好ましいものであったか，議論ができていれば良い．')
 
 
     #################
