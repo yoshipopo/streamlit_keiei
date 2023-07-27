@@ -228,8 +228,8 @@ def main():
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
     
-    #with st.expander('for developer'):
-    st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
+    with st.expander('for developer'):
+      st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
 
     n=len(df.columns)
     st.write(n)
@@ -256,8 +256,8 @@ def main():
     x/=np.sum(x, axis=1).reshape([N, 1])
     temp=np.identity(n)
     x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
-    #with st.expander('for developer'):
-    st.dataframe('x',x)
+    with st.expander('for developer(x)'):
+      st.write('x',x)
 
     squares = [get_portfolio(x[i],np_mean,np_vcm) for i in range(x.shape[0])]
     df2 = pd.DataFrame(squares,columns=['投資比率','収益率', '収益率の分散'])
@@ -273,8 +273,8 @@ def main():
       df2.iat[i, 3] = company_list_hyouji_datenashi[i-x.shape[0]]
       #print(i,company_list_hyouji_datenashi[i-x.shape[0]])
  
-    #with st.expander('for developer'):
-    st.dataframe('df2',df2)
+    with st.expander('for developer(df2)'):
+      st.write('df2',df2)
     
     #df2['収益率の標準偏差'] = np.sqrt(df2['収益率の分散'])
     #df2.drop(columns='収益率の分散', inplace=True)
