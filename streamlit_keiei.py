@@ -305,7 +305,7 @@ def main():
     st.subheader('課題2.5')
     st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
 
-    df_vcm = np.fill_diagonal(np.zeros((3, 3)), 1) 　#df.cov()
+    df_vcm = np.fill_diagonal(np.zeros((3, 3)), 1) #df.cov()
 
     a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
     np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
