@@ -305,7 +305,15 @@ def main():
     st.subheader('課題2.5')
     st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
 
-    df_vcm = np.fill_diagonal(np.zeros((n, n),int), 1) #df.cov()
+    #相関係数が0ということは，共分散が0ということ．分散共分散行列(df_covの，対角成分以外を0にすればよい)
+    diagonal_a = np.diag(df.cov()) #df.cov()の対角成分取得
+    df_zero = np.zeros((n, n),int)　#全部0のn*n（銘柄数*銘柄数）の行列作成
+    np.fill_diagonal(df_zero, diagonal_a) #ここで上書き
+
+    df_vcm=df_zero
+    st.write('df_vcm',df_vcm)
+    
+    
 
     a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
     np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
@@ -353,8 +361,7 @@ def main():
                       )
     st.plotly_chart(fig)
 
-    st.write('上図に，自己のポートフォリオの点が"正しい計算の上で"描画されていれば良い．')
-    
+  
 
 
 
