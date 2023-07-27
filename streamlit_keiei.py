@@ -302,19 +302,21 @@ def main():
     st.subheader('課題2.5')
     st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
     df=df_tourakuritu_merged
-    st.write('df',df)
-
     df=df.drop('Date', axis=1)
-    df_vcm=df.cov()
-    with st.expander('for developer(df_vcm)'):
-      st.write('df_vcm',df_vcm) 
+
+    
+    df_temp25=df.cov()
+    with st.expander('for developer(df_temp25)'):
+      st.write('df_temp25',df_temp25) 
 
     #相関係数が0ということは，共分散が0ということ．分散共分散行列(df_vcmの，対角成分以外を0にすればよい)
-    diagonal_df_vcm = np.diag(df_vcm) #df_vcmの対角成分取得
-    df_zero = np.zeros((n, n),int) #全部0のn*n（銘柄数*銘柄数）の行列作成
-    np.fill_diagonal(df_zero, diagonal_df_vcm) #ここで上書き
-    st.write('df_zero',df_zero)
-    df_vcm = df_zero
+    diagonal_df_temp25 = np.diag(df_temp25) #df_temp25の対角成分取得
+    st.write('diagonal_df_temp25',diagonal_df_temp25) 
+    
+    df_vcm = np.zeros((n, n),int) #全部0のn*n（銘柄数*銘柄数）の行列作成
+    np.fill_diagonal(df_vcm, diagonal_df_temp25) #ここで上書き
+    #st.write('df_zero',df_zero)
+    #df_vcm = df_zero
     with st.expander('for developer(df_vcm)'):
       st.write('df_vcm',df_vcm) 
     
