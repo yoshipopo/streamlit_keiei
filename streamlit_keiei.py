@@ -27,7 +27,7 @@ def main():
   st.header('銘柄選択')
   
   #全銘柄リスト、xlsファイル読み込み
-  path = 'data_j_2023.6.xls'
+  path = 'data_j_2023.6のコピー3.xls'
   df_all_company_list = path_to_df_all_company_list(path)
   st.write('全銘柄 : All stocks')
   st.dataframe(df_all_company_list)
