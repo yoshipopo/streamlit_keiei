@@ -300,6 +300,7 @@ def main():
 
     #################
     st.subheader('課題2.5')
+    st.write('相関係数=0と仮定し，課題2．2と同様の図を作成する．')
     st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
