@@ -51,13 +51,13 @@ def main():
       st.write('selected_company_list_hyouji_datenashi:', selected_company_list_hyouji_datenashi)
   
   #パラメータ設定
-  duration_start = st.date_input("データ開始日", dt.date(2022, 4, 20))
-  duration_end = st.date_input("データ終了日", dt.date(2023, 4, 21))
+  duration_start = st.date_input("データ開始日?", dt.date(2022, 4, 20))
+  duration_end = st.date_input("データ終了日?", dt.date(2023, 4, 21))
   #st.write('データ収集一番最初の日', duration_start)
   
   #duration = st.slider('Years? : 株価取得期間は？(年)',1,5,1,)
   
-  N = st.slider('Trial times of MC? : モンテカルロ法回数は？',10000,50000,10000,)
+  N = st.slider('モンテカルロ法回数は？ : Trial times of MC?',10000,50000,10000,)
 
   #################################################
   #ボタン部分
@@ -73,7 +73,7 @@ def main():
     df_price_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[0]
     df_tourakuritu_merged = selected_company_list_to_get_df(selected_company_list,selected_company_list_hyouji,duration_start,duration_end)[1]
     
-    st.write('取得した株価データ　： Stock Price data')
+    st.write('取得した株価データ : Stock Price data')
     st.dataframe(df_price_merged)
 
     ######株価グラフ
@@ -126,7 +126,7 @@ def main():
     fig.update_traces(hovertemplate='%{y}')
     fig.update_layout(hovermode='x')
     fig.update_layout(height=500,width=800,
-                      title='log-return : 対数収益率',
+                      title='対数収益率 : log-return',
                       xaxis={'title': 'Date'},
                       yaxis={'title': 'log-return'})                  
     fig.update_layout(showlegend=True)
@@ -203,12 +203,12 @@ def main():
     #################
     st.subheader('課題1.4')
     st.write('3銘柄のシャープレシオ:')
-    st.write('とりあえず安全利子率を0で計算.Excelで，この値に近い計算を行なっていればOK')
+    st.write('とりあえず安全利子率を0で計算.Excelで,この値に近い計算を行なっていればOK')
     st.dataframe(df_temp_expreturn/df_temp_stdev)
 
 
     st.write('ポートフォリオのシャープレシオ:')
-    st.write('ポートフォリオの期待収益率，標準偏差の計算が間違っていなければOK')
+    st.write('ポートフォリオの期待収益率，標準偏差の計算が間違っていなければOK.　標準偏差は,単純な加重平均でない点に注意.')
     
     
 
@@ -301,7 +301,7 @@ def main():
     #################
     st.subheader('課題2.5')
     st.write('相関係数=0と仮定し，課題2．2と同様の図を作成する．')
-    st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
+    st.write('課題2．2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
     df=df_tourakuritu_merged
     df=df.drop('Date', axis=1)
 
