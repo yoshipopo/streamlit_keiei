@@ -309,6 +309,7 @@ def main():
     df=df_tourakuritu_merged
     st.write('df',df)
 
+    df=df.drop('Date', axis=1)
     df_vcm=df.cov()
     with st.expander('for developer(df_vcm)'):
       st.write('df_vcm',df_vcm) 
