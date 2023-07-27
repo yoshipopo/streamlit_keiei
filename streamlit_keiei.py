@@ -309,10 +309,8 @@ def main():
 
     #相関係数が0ということは，共分散が0ということ．分散共分散行列(df_covの，対角成分以外を0にすればよい)
     diagonal_a = np.diag(df.cov()) #df.cov()の対角成分取得
-    df_zero = np.zeros((n, n),int) #全部0のn*n（銘柄数*銘柄数）の行列作成
-    np.fill_diagonal(df_zero, diagonal_a) #ここで上書き
-
-    df_vcm=df_zero
+    df_vcm = np.zeros((n, n),int) #全部0のn*n（銘柄数*銘柄数）の行列作成
+    np.fill_diagonal(df_vcm, diagonal_a) #ここで上書き
     st.write('df_vcm',df_vcm)
     
     
