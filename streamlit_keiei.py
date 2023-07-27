@@ -228,8 +228,8 @@ def main():
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
     
-    with st.expander('for developer'):
-      st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
+    #with st.expander('for developer'):
+    st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
 
     n=len(df.columns)
     #st.write(n)
@@ -286,7 +286,7 @@ def main():
     fig = px.scatter(df2, x='収益率の分散', y='収益率',hover_name='投資比率',color='分類')
     fig.update_layout(height=500,width=800,
                       title='Result of MC : モンテカルロシミュレーション結果',
-                      xaxis={'title': 'Standard deviation of expected return : 期待収益率の標準偏差'},
+                      xaxis={'title': 'Standard deviation of expected return : 期待収益率の分散'},
                       yaxis={'title': 'Expected return : 期待収益率'},
                       )
     st.plotly_chart(fig)
