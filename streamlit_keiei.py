@@ -228,11 +228,12 @@ def main():
     df=df.drop('Date', axis=1)
     company_list_hyouji_datenashi=df.columns.values
     
-    with st.expander('for developer'):
+    with st.expander('for developer(company_list_hyouji_datenashi)'):
       st.write('company_list_hyouji_datenashi',company_list_hyouji_datenashi)
 
     n=len(df.columns)
-    st.write(n)
+    with st.expander('for developer(n)'):
+      st.write('n',n)
 
     def get_portfolio(array1,array2,array3):
         rp = np.sum(array1*array2)
