@@ -202,12 +202,12 @@ def main():
     
     #################
     st.subheader('課題1.4')
-    st.write('3銘柄のシャープレシオ :')
-    st.write('とりあえず安全利子率を0で計算.Excxel　で，この値に近い計算を行なっていればOK')
+    st.write('3銘柄のシャープレシオ:')
+    st.write('とりあえず安全利子率を0で計算.Excelで，この値に近い計算を行なっていればOK')
     st.dataframe(df_temp_expreturn/df_temp_stdev)
 
 
-    st.write('ポートフォリオのシャープレシオ')
+    st.write('ポートフォリオのシャープレシオ:')
     st.write('ポートフォリオの期待収益率，標準偏差の計算が間違っていなければOK')
     
     
