@@ -241,7 +241,8 @@ def main():
         return array1.tolist(), rp, sigmap #tolistは，nparrayをlistに変換
 
     df_vcm=df.cov()
-    st.write(df_vcm)
+    with st.expander('for developer(df_vcm)'):
+      st.write('df_vcm',df_vcm) 
 
     a=np.ones((n,n)) #n*nの1の行列 array([[1., 1., 1.],[1., 1., 1.],[1., 1., 1.]])
     np.fill_diagonal(a,125) #np.fill_diagonal(a,len(df))
@@ -258,6 +259,7 @@ def main():
     x/=np.sum(x, axis=1).reshape([N, 1])
     temp=np.identity(n)
     x=np.append(x,temp, axis=0) #xは3銘柄のランダムな投資比率.[0.3868,	0.4789,	0.1343]がN行存在する
+    
     with st.expander('for developer(x)'):
       st.write('x',x)
 
@@ -305,7 +307,11 @@ def main():
     st.subheader('課題2.5')
     st.write('課題2.2のグラフより，リスク（標準偏差）が減少しているはずである．そうなっていればOK')
     df=df_tourakuritu_merged
-    st.write(df)
+    st.write('df',df)
+
+    df_vcm=df.cov()
+    with st.expander('for developer(df_vcm)'):
+      st.write('df_vcm',df_vcm) 
 
     #相関係数が0ということは，共分散が0ということ．分散共分散行列(df_covの，対角成分以外を0にすればよい)
     diagonal_a = np.diag(df.cov()) #df.cov()の対角成分取得
