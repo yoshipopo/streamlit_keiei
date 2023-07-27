@@ -315,9 +315,9 @@ def main():
     
     df_vcm = np.zeros((n, n)) #全部0のn*n（銘柄数*銘柄数）の行列作成
     np.fill_diagonal(df_vcm, diagonal_df_temp25) #ここで上書き
-    #st.write('df_zero',df_zero)
-    #df_vcm = df_zero
-    with st.expander('for developer(df_vcm)'):
+    df_vcm = pd.DataFrame(df_vcm)
+    
+    with st.expander('for developer(df_vcm,相関係数=0 version)'):
       st.write('df_vcm',df_vcm) 
     
     
