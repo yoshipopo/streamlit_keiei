@@ -195,9 +195,7 @@ def main():
     #あとポートフォリオ
     st.write('ポートフォリオの投資比率が100%になっていることを確認していればよい．')
     #st.number_input(selections[0],value=30)
-    st.slider('{selections[0]}の投資比率',0,100,1,)
-
-
+    #st.slider('{selections[0]}の投資比率',0,100,1,)
 
 
     
