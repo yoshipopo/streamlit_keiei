@@ -396,8 +396,10 @@ def selected_company_list_to_get_df(selected_company_list_local,selected_company
         code = selected_company_list_local[i]
 
         #stooq = StooqDailyReader(code, start=start, end=end) #こっちなら確実に動く
-        stooq = pdr.DataReader(code,"stooq", start=start, end=end)
-        df_local = stooq.read()  # pandas.core.frame.DataFrame
+        #df_local = stooq.read()  # pandas.core.frame.DataFrame
+      
+        df_local = pdr.DataReader(code,"stooq", start=start, end=end) #API制限回避
+        
 
         df_price_local = df_local['Close']
         df_price_local = df_price_local.reset_index()
