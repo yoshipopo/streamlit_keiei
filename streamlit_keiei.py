@@ -9,6 +9,7 @@ Created on Tue Jul 12 17:51:47 2022
 import streamlit as st
 import sys
 from pandas_datareader.stooq import StooqDailyReader
+import pandas_datareader.data as pdr
 import pandas as pd
 import numpy as np
 import math 
@@ -394,7 +395,8 @@ def selected_company_list_to_get_df(selected_company_list_local,selected_company
     for i in range(len(selected_company_list_local)):
         code = selected_company_list_local[i]
 
-        stooq = StooqDailyReader(code, start=start, end=end)
+        #stooq = StooqDailyReader(code, start=start, end=end) #こっちなら確実に動く
+        stooq = pdr.DataReader(code,"stooq", start=start, end=end)
         df_local = stooq.read()  # pandas.core.frame.DataFrame
 
         df_price_local = df_local['Close']
