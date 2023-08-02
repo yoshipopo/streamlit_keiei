@@ -22,7 +22,7 @@ st.set_page_config(layout="wide")
 
 def main():
   st.title('経営管理論　模範解答(Yoshida) 2023/7/31作成')
-  st.write(自身で株式を3銘柄選択→MCを行い有効フロンティアを描画.)
+  st.write('自身で株式を3銘柄選択→MCを行い有効フロンティアを描画')
   st.write('sys.version',sys.version)
   
   
