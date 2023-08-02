@@ -21,8 +21,8 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 
 def main():
-  st.title('経営管理論　模範解答(Yoshida) 2023/7/31')
-  st.write('自身で株式を3銘柄選択→MCを行い有効フロンティアを描画')
+  st.title('経営管理論　模範解答(Haruki Yoshida) 2023/7/31')
+  st.write('自身で株式を3銘柄選択&データ取得期間設定→MCを行い有効フロンティアを描画')
   st.write('sys.version:',sys.version)
   
   
